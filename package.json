@@ -1,0 +1,25 @@
+{
+  "name": "react-in-theory",
+  "version": "1.0.0",
+  "description": "A tutorial for building a react app for Turing School",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martensonbj/react-in-theory.git"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "npm",
+    "javascript"
+  ],
+  "author": "Brenna Martenson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/martensonbj/react-in-theory/issues"
+  },
+  "homepage": "https://github.com/martensonbj/react-in-theory#readme"
+}
