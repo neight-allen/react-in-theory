@@ -97,7 +97,7 @@ build/
   - main.bundle.js
 ```
 
-Pop open index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
+Look at your index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
 
 Run `npm start` and visit `localhost:8080` to make sure that everything is wired up and we see our `console.log` message.
 
@@ -144,7 +144,7 @@ module.exports = {
 }
 ```
 
-To verify that everything is hooked up, create the file `app/main.scss` and write some Sass. Add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`.
+To verify that everything is hooked up add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`.
 
 ### Prepare Webpack for React
 
