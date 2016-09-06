@@ -25,6 +25,10 @@
   },
   "homepage": "https://github.com/martensonbj/react-in-theory#readme",
   "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
     "css-loader": "^0.25.0",
     "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.9.0",
