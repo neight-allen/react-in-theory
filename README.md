@@ -1,18 +1,10 @@
 # React In Theory
 
-### Goals of This Lesson
-  - Build a basic web app from scratch using React
-
-## There Are 2 Starting points to this lesson:
-  1. If you want to build your app from scratch, start here and make sure you're in the branch `from-scratch`.
-  2. If you want to jump in with everything put together but the React configuration and implementation, checkout the branch `from-react`
-
-# 1. Code Along From Scratch
+# Code Along From Scratch - Basic Setup
 
 ## Webpack and Application Setup
 
 Clone down this repository.  
-`git `
 Initialize `npm` and accept all defaults  
 `npm init --yes`  
 
@@ -24,7 +16,6 @@ To cover our bases make sure your `.gitignore` file is ready to go:
 We want Webpack to handle all the fancy stuff so let's set that up as well.  
 `npm i webpack webpack-dev-server -D`  
 `touch webpack.config.js`  
-
 
 You can verify that everything is in order if your `package.json` dependencies (so far) look something like this:  
 
