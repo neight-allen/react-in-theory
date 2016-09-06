@@ -1,24 +1,15 @@
 # React In Theory
 
-### Goals of This Lesson
-  - Build a basic web app from scratch using React
-
-## There Are 2 Starting points to this lesson:
-  1. If you want to build your app from scratch, start here and make sure you're in the branch `from-scratch`.
-  2. If you want to jump in with everything put together but the React configuration and implementation, checkout the branch `from-react`
-
-# 1. Code Along From Scratch
+# 1. Code Along From Scratch with Plugins & Sass
 
 ## Webpack and Application Setup
 
-Clone down this repository.  
-`git `
 Initialize `npm` and accept all defaults  
 `npm init --yes`  
 
 Add a quick console.log into your `index.js` file so we have something to look for when we wire up our Webpack.  
 
-To cover our bases make sure your `.gitignore` file is ready to go:  
+To cover your bases make sure your `.gitignore` file is ready to go:  
 `curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore`  
 
 We want Webpack to handle all the fancy stuff so let's set that up as well.  
@@ -26,7 +17,6 @@ We want Webpack to handle all the fancy stuff so let's set that up as well.
 `touch webpack.config.js`  
 
 Another cool thing we can implement is a plugin for Webpack called `html-webpack-plugin`. This plugin will create an index.html for us and inject the `main.bundle.js` file into the body on build.  
-
 
 `npm i html-webpack-plugin --save-dev`  
 
