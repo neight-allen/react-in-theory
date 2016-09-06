@@ -25,17 +25,12 @@ We want Webpack to handle all the fancy stuff so let's set that up as well.
 `npm i webpack webpack-dev-server -D`  
 `touch webpack.config.js`  
 
-Another cool thing we can implement is a plugin for Webpack called `html-webpack-plugin`. This plugin will create an index.html for us and inject the `main.bundle.js` file into the body on build.  
-
-
-`npm i html-webpack-plugin --save-dev`  
 
 You can verify that everything is in order if your `package.json` dependencies (so far) look something like this:  
 
 ```
 ...
 "devDependencies": {
-  "html-webpack-plugin": "^2.22.0",
   "webpack": "^1.13.2",
   "webpack-dev-server": "^1.15.0"
 }
@@ -46,11 +41,10 @@ Now's the time to write our `webpack.config.js` as follows:
 
 ```
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  root: __dirname
 }
 
 module.exports = {
@@ -58,43 +52,26 @@ module.exports = {
     main: PATHS.app + '/index.js'
   },
   output: {
-    path: PATHS.build,
+    path: PATHS.root,
     filename: '[name].bundle.js'
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'React In Theory',
-      inject: 'body'
-    })
-  ]
+  }
 }
 ```  
-
-Note the section about plugins. We're telling our `HtmlWebpackPlugin` to create its default `index.html` file with the title of "React In Theory". It will automatically stick that and the `main.bundle.js` file we create in the output directory we specified.  
-
-That last line indicates that we want to inject our `main.bundle.js` file into the body of our html page (vs the head).
 
 In `package.json` add the script to run `webpack` and `webpack-dev-server`.
 
 ```
 "scripts": {
-  "start": "webpack-dev-server --inline --hot",
+  "start": "webpack-dev-server",
   "build": "webpack"
 }
 ```
-
-Note that we added the flag `--hot` to our `start` script. This enables something called `Hot Module Replacement` or `HMR`. Basically `HMR` tells the browser to refresh automatically when changes are made to your app, including swapping out modules or `components`, which will be necessary as we work with React.  
 
 Right now we still just have our `app` directory without much else going on. Kick off Webpack with `run build` so it can do put itself together.
 
 `npm run build`  
 
-Notice that we now have a directory that looks like this:
-```
-build/
-  - index.html
-  - main.bundle.js
-```
+Notice that we should now see the files `index.html` and `main.bundle.js` in our root directory.
 
 Pop open index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
 
@@ -102,7 +79,7 @@ Run `npm start` and visit `localhost:8080` to make sure that everything is wired
 
 Let's breeze through the rest of setup with a few more commands to wire up our app to work with Sass and React.  
 
-`npm install --save-dev style-loader css-loader sass-loader node-sass`  
+`npm install --save-dev style-loader css-loader`  
 
 Update your `webpack.config.js` file to fire up the loaders that we just installed, and to make life easier let's also add that bit about keeping track of what extensions we expect to use.  
 
@@ -114,7 +91,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  root: __dirname
 }
 
 module.exports = {
@@ -122,28 +99,20 @@ module.exports = {
     main: PATHS.app + '/index.js'
   },
   output: {
-    path: PATHS.build,
+    path: PATHS.root,
     filename: '[name].bundle.js'
   },
   module: {
     loaders: [
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.scss$/, loader: "style!css!sass" }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'React In Theory',
-      inject: 'body'
-    })
-  ],
   resolve: {
-    extensions: ['', '.scss', '.css']
+    extensions: ['', '.css']
   }
 }
 ```
-
-To verify that everything is hooked up, create the file `app/main.scss` and write some Sass. Add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`.
+Add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`. You should see a slightly darker background.
 
 ### Prepare Webpack for React
 
@@ -159,7 +128,7 @@ loaders: [
   ]
 ...
 resolve: {
-  extensions: ['', '.scss', '.css', '.js', '.json', '.jsx']
+  extensions: ['','.css', '.js', '.json', '.jsx']
 }
 ...
 ```
@@ -248,27 +217,6 @@ If you remember, we told Webpack to generate our html file for us with our HtmlW
   </body>
 </html>
 ```
-Should be good to go, right?  
-
-Not so fast!  
-
-Here is an **important note** about the HtmlWebpackPlugin we installed earlier. Every time we build, it's going to think we want a new copy of the `index.html` file we created at first using the configuration instructions we set in webpack.config.js. This will create a file exactly like the version we had at the beginning, which will overwrite the div we just added.  
-
-Instead of telling it to create a file from scratch, we need it to look from our existing `index.html` and go from there.
-
-Easy fix! Adjust the `webpack.config.js` directions to match the following:  
-
-```
-plugins: [
-  new HtmlWebpackPlugin({
-    template: PATHS.build + '/index.html',
-    title: 'React In Theory',
-    inject: 'body'
-  })
-],
-```
-
-Now we are telling our html-plugin to take our existing `index.html` file and work from that when building our `bundle.js`.  
 
 Run `npm start` and checkout `localhost:8080` to see the 'ReACTION'...mwahaha. Awesome! We've just written our first code in React.  
 
@@ -506,72 +454,7 @@ Let's break our file into it's individual pieces. This will help with refactorin
 
 Hint: Each of these files will house a single component of the same name!
 
-`ActionButton.jsx`  
-```
-const React = require('react')
-const ReactDOM = require('react-dom')
-
-class ActionButton extends React.Component {
-  render () {
-    return (
-      <button className="ActionButton" onClick={this.props.handleClick}>
-        <span>{this.props.text}</span>
-      </button>
-    )
-  }
-}
-
-module.exports = ActionButton
-```  
-
-`LikesCounter.jsx`  
-```
-const React = require('react')
-const ReactDOM = require('react-dom')
-const ActionButton = require('./ActionButton')
-
-class LikesCounter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {count: props.initialCount};
-  }
-
-  addToLikesCount (num) {
-    this.setState( {count: this.state.count + num } )
-  }
-
-  render () {
-    return (
-      <div className="LikesCounter">
-        <h3>Likes: {this.state.count}</h3>
-        <div className="ActionButtons">
-          <ActionButton text="Like! (+1)" handleClick={this.addToLikesCount.bind(this, 1)} />
-          <ActionButton text="Dislike! (-1)" handleClick={this.addToLikesCount.bind(this, -1)} />
-        </div>
-      </div>
-    )
-  }
-}
-
-module.exports = LikesCounter
-```
-
-`App.jsx`  
-```
-const React = require('react')
-const ReactDOM = require('react-dom')
-const LikesCounter = require('./LikesCounter')
-
-class App extends React.Component {
-  render () {
-    return (
-      <LikesCounter initialCount={0}/>
-    )
-  }
-}
-
-ReactDOM.render( <App />, document.getElementById('application'))
-```
+See if you can refactor so that your index.js file looks like this:
 
 `index.js`
 ```
