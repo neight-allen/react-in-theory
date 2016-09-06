@@ -2,7 +2,6 @@
 
 ### Goals of This Lesson
   - Build a basic web app from scratch using React
-  - Associated with the React In Theory SlideDeck (not necessary for this lesson plan)
 
 ## There Are 2 Starting points to this lesson:
   1. If you want to build your app from scratch, start here and make sure you're in the branch `from-scratch`.
@@ -97,7 +96,7 @@ build/
   - main.bundle.js
 ```
 
-Look at your index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
+Pop open index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
 
 Run `npm start` and visit `localhost:8080` to make sure that everything is wired up and we see our `console.log` message.
 
@@ -144,7 +143,7 @@ module.exports = {
 }
 ```
 
-To verify that everything is hooked up add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`.
+To verify that everything is hooked up, create the file `app/main.scss` and write some Sass. Add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`.
 
 ### Prepare Webpack for React
 
@@ -316,19 +315,19 @@ Ultimately I want a wrapping element that I'll name LikesCounter that has my tal
 Lets reorganize our app a little bit to plan ahead for refactoring and write out our structure.
 
 `mkdir app/components`  
-`touch app/components/App.jsx`  
+`touch app/components/LikesCounter.jsx`  
 
-Copy what is in your `index.js` file into `App.jsx` and add some stuff.  In `index.js` simply require the component.
+Move what is in your `index.js` file into `LikesCounter.jsx`.  In `index.js` simply require the component.
 
 `index.js`
 
 ```
 require('./main')
-require('./components/App')
+require('./components/LikesCounter')
 ```
 
-Now let's add a "LikeCounter" component.  
-`App.jsx`  
+Now let's add a "LikesCounter" component.  
+`LikesCounter.jsx`  
 
 ```
 const React = require('react')
@@ -418,7 +417,7 @@ constructor(props) {
 }
 ```
 
-At this point your `App.jsx` file should look like this:
+At this point your `LikesCounter.jsx` file should look like this:
 ```
 const React = require('react')
 const ReactDOM = require('react-dom')
