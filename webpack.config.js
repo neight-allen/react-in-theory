@@ -1,9 +1,8 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  root: __dirname
 }
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
     main: PATHS.app + '/index.js'
   },
   output: {
-    path: PATHS.build,
+    path: __dirname,
     filename: '[name].bundle.js'
   },
   module: {
@@ -21,13 +20,6 @@ module.exports = {
       { test: /\.jsx?$/, exclude: '/node_modules/', loader: 'babel-loader' }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: PATHS.build + '/index.html',
-      title: 'React In Theory',
-      inject: 'body'
-    })
-  ],
   resolve: {
     extensions: ['', '.scss', '.css', '.js', '.json', '.jsx']
   }
