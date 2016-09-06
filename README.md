@@ -11,8 +11,7 @@
 
 ## Webpack and Application Setup
 
-Clone down this repository.  
-`git `
+Clone down [this repository](https://github.com/martensonbj/react-in-theory).  
 Initialize `npm` and accept all defaults  
 `npm init --yes`  
 
@@ -132,13 +131,12 @@ resolve: {
 ...
 ```
 
-Finally let's set up a `.babelrc` file to help our app recognize and develop both ES6 and React syntax.  
 
 First we need to install some babel presets before we can tell our config file to use them.
 
 `npm i babel-preset-es2015 babel-preset-react --save-dev`
 
-Then, in the root of your application, `touch .babelrc`, and in that file add the following:
+Finally let's set up a `.babelrc` file to help our app recognize and develop both ES6 and React syntax. In the root of your application, `touch .babelrc`, and in that file add the following:
 
 ```
 {
