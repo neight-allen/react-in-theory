@@ -67,13 +67,13 @@ In `package.json` add the script to run `webpack` and `webpack-dev-server`.
 }
 ```
 
-Right now we still just have our `app` directory without much else going on. Kick off Webpack with `run build` so it can do put itself together.
+*What are we missing in our directory before we can build our app?*
+
+Once you've added what's missing, kick off Webpack with `run build` so it can do put itself together.
 
 `npm run build`  
 
-Notice that we should now see the files `index.html` and `main.bundle.js` in our root directory.
-
-Pop open index.html and verify that it has the title we specified in our plugin configuration as well as our `main.bundle.js` file from webpack. Sweet!  
+Notice that we should now `main.bundle.js` in our root directory (and and `index.html` file if you created one).
 
 Run `npm start` and visit `localhost:8080` to make sure that everything is wired up and we see our `console.log` message.
 
@@ -87,7 +87,6 @@ Your `webpack.config.js` file should now match this:
 
 ```
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -194,30 +193,6 @@ Check out that last line. Here we are telling React-DOM to take our `<ActionButt
 
 What interesting things do you notice about this chunk of code, and what problems do you forsee happening (particularly with that last line)?
 
-Run `npm start` and lets look at the error message:  
-
-`Uncaught Invariant Violation: _registerComponent(...): Target container is not a DOM element.`  
-
-On the last line of our file we tell React to stick our code in a DOM element with an ID of 'application'. Checkout `index.html` ...there's no element with that ID!  
-
-If you remember, we told Webpack to generate our html file for us with our HtmlWebpackPlugin. We never told it to have a div with an Id of anything. Let's add the div.
-
-```
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>React In Theory</title>
-  </head>
-  <body>
-
-    <div id="application"></div>
-
-    <script type="text/javascript" src="main.bundle.js"></script>
-  </body>
-</html>
-```
-
 Run `npm start` and checkout `localhost:8080` to see the 'ReACTION'...mwahaha. Awesome! We've just written our first code in React.  
 
 If you haven't already, download the React Dev Tools extension. Open up the console, click on the React tab, and you'll see we have our `<ActionButton />` component. Take a minute to dig in and see what comes up in our sidebar.  
@@ -305,7 +280,7 @@ ReactDOM.render(<LikesCounter />, document.getElementById('application'))
 
 ```  
 
-Danger Will Robinson!
+Danger Will Robinson!  
 [Click here if that reference means nothing to you](http://www.urbandictionary.com/define.php?term=Danger%2C%20Will%20Robinson!)  
 [Also This](https://www.youtube.com/watch?v=OWwOJlOI1nU)  
 
