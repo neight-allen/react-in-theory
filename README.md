@@ -1,153 +1,15 @@
 # React In Theory
 
-### Goals of This Lesson
-  - Build a basic web app from scratch using React
+## Code Along From React
 
-## There Are 2 Starting points to this lesson:
-  1. If you want to build your app from scratch, start here and make sure you're in the branch `from-scratch`.
-  2. If you want to jump in with everything put together but the React configuration and implementation, checkout the branch `from-react`
+To install dependencies:  
+`npm install`  
 
-# 1. Code Along From Scratch
-
-## Webpack and Application Setup
-
-Clone down [this repository](https://github.com/martensonbj/react-in-theory).  
-Initialize `npm` and accept all defaults  
-`npm init --yes`  
-
-Add a quick console.log into your `index.js` file so we have something to look for when we wire up our Webpack.  
-
-To cover our bases make sure your `.gitignore` file is ready to go:  
-`curl https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore > .gitignore`  
-
-We want Webpack to handle all the fancy stuff so let's set that up as well.  
-`npm i webpack webpack-dev-server -D`  
-`touch webpack.config.js`  
-
-
-You can verify that everything is in order if your `package.json` dependencies (so far) look something like this:  
-
-```
-...
-"devDependencies": {
-  "webpack": "^1.13.2",
-  "webpack-dev-server": "^1.15.0"
-}
-...
-```
-
-Now's the time to write our `webpack.config.js` as follows:  
-
-```
-const path = require('path')
-
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  root: __dirname
-}
-
-module.exports = {
-  entry: {
-    main: PATHS.app + '/index.js'
-  },
-  output: {
-    path: PATHS.root,
-    filename: '[name].bundle.js'
-  }
-}
-```  
-
-In `package.json` add the script to run `webpack` and `webpack-dev-server`.
-
-```
-"scripts": {
-  "start": "webpack-dev-server",
-  "build": "webpack"
-}
-```
-
-*What are we missing in our directory before we can build our app?*
-
-Once you've added what's missing, kick off Webpack with `run build` so it can do put itself together.
-
+Build and Start your App:  
 `npm run build`  
-
-Notice that we should now `main.bundle.js` in our root directory (and and `index.html` file if you created one).
-
-Run `npm start` and visit `localhost:8080` to make sure that everything is wired up and we see our `console.log` message.
-
-Let's breeze through the rest of setup with a few more commands to wire up our app to work with Sass and React.  
-
-`npm install --save-dev style-loader css-loader`  
-
-Update your `webpack.config.js` file to fire up the loaders that we just installed, and to make life easier let's also add that bit about keeping track of what extensions we expect to use.  
-
-Your `webpack.config.js` file should now match this:  
-
-```
-const path = require('path')
-
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  root: __dirname
-}
-
-module.exports = {
-  entry: {
-    main: PATHS.app + '/index.js'
-  },
-  output: {
-    path: PATHS.root,
-    filename: '[name].bundle.js'
-  },
-  module: {
-    loaders: [
-      { test: /\.css$/, loader: "style!css" },
-    ]
-  },
-  resolve: {
-    extensions: ['', '.css']
-  }
-}
-```
-Add `require('./main')` at the top of `index.js`, rebuild and check out `localhost:8080`. You should see a slightly darker background.
-
-### Prepare Webpack for React
-
-Our first step in setting up our app to work with Webpack is to install some React specific dependencies. React uses JSX syntax to write HTML in our JavaScript files, which means we need Babel installed to transpile it.  
-
-`npm i babel-loader babel-core --save-dev`  
-
-Add the loader and extensions to `webpack.config.js`  
-```
-loaders: [
-...
-    { test: /\.jsx?$/, exclude: '/node_modules/', loader: 'babel-loader' }
-  ]
-...
-resolve: {
-  extensions: ['','.css', '.js', '.json', '.jsx']
-}
-...
-```
+`npm start`
 
 
-First we need to install some babel presets before we can tell our config file to use them.
-
-`npm i babel-preset-es2015 babel-preset-react --save-dev`
-
-Finally let's set up a `.babelrc` file to help our app recognize and develop both ES6 and React syntax. In the root of your application, `touch .babelrc`, and in that file add the following:
-
-```
-{
-  "presets": [
-    "es2015",
-    "react"
-  ]
-}
-```
-
-## 2. Code Along From React
 
 Time to write some code in React!  
 
