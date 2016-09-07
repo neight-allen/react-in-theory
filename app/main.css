@@ -15,7 +15,23 @@ h3 {
     text-align: center;
 }
 
-button {
+#login-form {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#login-form button {
+  padding: 10px;
+  color: #fff;
+  background: blue;
+}
+
+#login-form input, .login-button {
+  display: block;
+}
+
+.ActionButton {
     padding: 20px;
     border-radius: 2px;
     outline: none;

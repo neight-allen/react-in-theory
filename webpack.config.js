@@ -16,10 +16,10 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.jsx?$/, exclude: '/node_modules/', loader: 'babel-loader' }
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
   },
   resolve: {
-    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx']
+    extensions: ['', '.scss', '.css', '.js', '.json', '.jsx'],
   }
 }
