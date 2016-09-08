@@ -17,8 +17,8 @@ class LikesCounter extends React.Component {
       <div className="LikesCounter">
         <h3>Likes: {this.state.count}</h3>
         <div className="ActionButtons">
-          <ActionButton text="Like! (+1)" handleClick={this.addToLikesCount.bind(this, 1)} />
-          <ActionButton text="Dislike! (-1)" handleClick={this.addToLikesCount.bind(this, -1)} />
+          <ActionButton text="Like! (+1)" id='like' handleClick={this.addToLikesCount.bind(this, 1)} />
+          <ActionButton text="Dislike! (-1)" id='dislike' handleClick={this.addToLikesCount.bind(this, -1)} />
         </div>
       </div>
     )

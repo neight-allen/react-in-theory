@@ -26,7 +26,13 @@ class LoginForm extends React.Component {
     let email = this.state.email
     let password = this.state.password
     Login.storeUserInFirebase(email, password)
+  }
 
+  handleGoogleAuth (e) {
+    e.preventDefault
+    let email = this.state.email
+    let password = this.state.password
+    Login.loginWithGoogle(email, password)
   }
 
   render () {
@@ -40,7 +46,9 @@ class LoginForm extends React.Component {
                 name="password"
                 placeholder="Password"
                 onChange={this.handlePassword.bind(this)} />
-        <SignInButton text="Create Account" handleClick={this.handleClick.bind(this)}
+        <SignInButton text="Create Account" handleClick={this.handleClick.bind(this)} />
+        <SignInButton text="Sign In With Google" handleClick={this.handleGoogleAuth.bind(this)} />
+
       </form>
     )
   }

@@ -5,7 +5,7 @@ class Navigation extends React.Component {
   render () {
       <nav>
         <ul>
-          <li><</li>
+          <li></li>
           <li></li>
         </ul>
       </nav>

@@ -2,7 +2,7 @@ const path = require('path')
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  root: __dirname
+  root: path.join(__dirname, 'public')
 }
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
     main: PATHS.app + '/index.js'
   },
   output: {
-    path: __dirname,
+    path: PATHS.root,
     filename: '[name].bundle.js'
   },
   module: {
