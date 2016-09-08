@@ -1,7 +1,8 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const firebase = require('firebase')
-let Login = require('../login')
+const Login = require('../login')
+const SignInButton = require('./SignInButton')
 
 
 class LoginForm extends React.Component {
@@ -39,7 +40,7 @@ class LoginForm extends React.Component {
                 name="password"
                 placeholder="Password"
                 onChange={this.handlePassword.bind(this)} />
-        <button className="login-button" onClick={this.handleClick.bind(this)}>Log In</button>
+        <SignInButton text="Create Account" handleClick={this.handleClick.bind(this)}
       </form>
     )
   }
