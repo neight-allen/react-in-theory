@@ -11,3 +11,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render( <App />, document.getElementById('application'))
+
+module.exports = App

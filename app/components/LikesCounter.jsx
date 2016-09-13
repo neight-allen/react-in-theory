@@ -9,7 +9,8 @@ class LikesCounter extends React.Component {
   }
 
   addToLikesCount (num) {
-    this.setState( {count: this.state.count + num } )
+debugger
+    this.setState( {count: this.state.count += num } )
   }
 
   render () {
@@ -17,8 +18,8 @@ class LikesCounter extends React.Component {
       <div className="LikesCounter">
         <h3>Likes: {this.state.count}</h3>
         <div className="ActionButtons">
-          <ActionButton text="Like! (+1)" handleClick={this.addToLikesCount.bind(this, 1)} />
-          <ActionButton text="Dislike! (-1)" handleClick={this.addToLikesCount.bind(this, -1)} />
+          <ActionButton id="like" text="Like! (+1)" handleClick={this.addToLikesCount.bind(this, 1)} />
+          <ActionButton id="dislike" text="Dislike! (-1)" handleClick={this.addToLikesCount.bind(this, -1)} />
         </div>
       </div>
     )
