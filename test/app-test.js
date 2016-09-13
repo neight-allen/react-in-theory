@@ -4,7 +4,6 @@ const App =  require('../app/components/App')
 const LikesCounter = require('../app/components/LikesCounter')
 const ActionButton = require('../app/components/ActionButton')
 import { shallow, mount, render } from 'enzyme'
-require('locus')
 
 describe('app.jsx renders the likes counter',function(){
   it('should render the application',function(){
