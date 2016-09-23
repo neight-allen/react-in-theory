@@ -17,6 +17,7 @@ As always, we need to install some necessary dependencies to add the React libra
 Let's start by creating the template for the "Like" button.
 
 Replace what is currently in `index.js` with:  
+
 ```
 require('./main')
 
@@ -67,6 +68,7 @@ If you remember, we told Webpack to generate our html file for us with our HtmlW
   </body>
 </html>
 ```
+
 Should be good to go, right?  
 
 Not so fast!  
@@ -237,6 +239,7 @@ constructor(props) {
 ```
 
 At this point your `LikesCounter.jsx` file should look like this:
+
 ```
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -271,8 +274,8 @@ class ActionButton extends React.Component {
 }
 
 ReactDOM.render(<LikesCounter initialCount={0}/>, document.getElementById('application'))
-
 ```
+
 Open up the console and look at what information is available within the `<LikesCounter />` component.  
 
 Last step - hook up the buttons to change the state!  
@@ -284,6 +287,7 @@ addToLikesCount (num) {
   this.setState({count: this.state.count + num});
 }
 ```
+
 This is where the magic of React comes in. We are essentially throwing out the old information and replacing it with fresh, up-to-date information by re setting the state to be `{count: this.state.count + num}` .  
 
 Finally, add an `onClick` event-listener into our `ActionButton` class, and then pass that information to the `<ActionButton />` component to tell it what to do within our `<LikesCounter />` .  
@@ -299,6 +303,7 @@ class ActionButton extends React.Component {
   }
 }
 ```
+
 Note that within our `onClick` action, we get to name our "prop" whatever we want. A common function name is `handleClick`. This will in turn go tell our component to find the prop `handleClick` and run the function we set as its value.
 
 ```
@@ -326,6 +331,7 @@ Let's break our file into it's individual pieces. This will help with refactorin
 Hint: Each of these files will house a single component of the same name!
 
 `ActionButton.jsx`  
+
 ```
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -344,6 +350,7 @@ module.exports = ActionButton
 ```  
 
 `LikesCounter.jsx`  
+
 ```
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -376,6 +383,7 @@ module.exports = LikesCounter
 ```
 
 `App.jsx`  
+
 ```
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -392,7 +400,8 @@ class App extends React.Component {
 ReactDOM.render( <App />, document.getElementById('application'))
 ```
 
-`index.js`
+`index.js`  
+
 ```
 require('./main')
 require('./components/App')
