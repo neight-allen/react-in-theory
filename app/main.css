@@ -35,6 +35,10 @@ button:hover {
   cursor: pointer;
 }
 
+a.remove-row {
+  text-decoration:none;
+}
+
 .LikesCounter {
   height: 300px;
   width: 300px;
